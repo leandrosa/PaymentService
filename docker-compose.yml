@@ -1,0 +1,56 @@
+version: "3.9"
+
+services:
+  payments.presentation:
+    image: ${DOCKER_REGISTRY-}paymentspresentation
+    ports:
+      - 5000:80
+      - 5001:443
+    build:
+      context: .
+      dockerfile: Payments.Presentation/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=CheckoutDb;User=sa;Password=Your_password123;MultipleActiveResultSets=true
+      - ElasticConfiguration__Uri=http://elasticsearch:9200
+      - IdentityServer__Key__Type=Development
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Checkout_cert123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    depends_on:
+      - db
+    restart: on-failure
+
+  db:
+    image: "mcr.microsoft.com/mssql/server:2019-CU8-ubuntu-16.04"
+    environment:
+      - "SA_PASSWORD=Your_password123"
+      - "ACCEPT_EULA=Y"
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    ports:
+      - 9200:9200
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+
+volumes:
+  elasticsearch-data:
