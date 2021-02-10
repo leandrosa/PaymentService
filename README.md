@@ -1,7 +1,7 @@
- # Payment Gateway API Service
+ # Payment Gateway Service
 ![.NET](https://github.com/mathos819/PaymentService/workflows/.NET/badge.svg)
 
-The project aims to create a payment gateway to perform payment transactions between merchants and bank issuers.
+The project aims to create a gateway to perform payment transactions between merchants and bank issuers.
 
 ### Technologies
 
@@ -38,7 +38,7 @@ To build and run the docker containers, execute `docker-compose up --build` from
 
 The script will create the following containers:
 
-* Payment Gateway API Service (https://localhost:5001/swagger)
+* Payment Gateway Service (https://localhost:5001/swagger)
 * SQL Server - latest (localhost,1433)
 * Elasticsearch - 7.9.2 (http://localhost:9200)
 * Kibana - 7.9.2 (http://localhost:5601)
@@ -53,15 +53,15 @@ The application supports two types of data storage, SQL Server and in-memory. To
   "UseInMemoryDatabase": false,
 ```
 
-By default, the application will use the SQL Server as its database, and the connection string is set to the local container created on the step before.
+By default, the data storage used will be SQL Server, and the connection string is set to the local container created on the step before.
 
 The database migration will occur when you run the application. You don't need to worry about it.
 
 ### Authentication and authorization
 
-The application counts with authentication and authorization features.
+The service counts with authentication and authorization features.
 
-When you first run the service, two users will be created when the database migration occurs, and you can use them to generate a valid token through the API.
+When you first run the application, two users will be created and you can use them to generate a valid token through the API.
 
 | Username | Password | Role |
 | :---: | :---: | :---: |
