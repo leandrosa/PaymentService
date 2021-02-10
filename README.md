@@ -34,7 +34,7 @@ The following will need to be executed from your terminal to create a cert
 
 If you already have a valid SSL certificate, you can change the environment variables on the **docker-compose.yml** file.
 
-To build and run the docker containers, execute `docker-compose up --build` from the root of the solution.
+To build and run the docker containers, execute `docker-compose up --build` from the solution's root.
 
 The script will create the following containers:
 
@@ -55,13 +55,13 @@ The application supports two types of data storage, SQL Server and in-memory. To
 
 By default, the application will use the SQL Server as its database, and the connection string is set to the local container created on the step before.
 
-The database migration will occur automatically when you run the application. You don't need to worry about it.
+The database migration will occur when you run the application. You don't need to worry about it.
 
 ### Authentication and authorization
 
 The application counts with authentication and authorization features.
 
-When you first run the service, 2 users will be created when the database migration occurs, and you can use them to generate a valid token through the API.
+When you first run the service, two users will be created when the database migration occurs, and you can use them to generate a valid token through the API.
 
 | Username | Password | Role |
 | :---: | :---: | :---: |
@@ -72,14 +72,14 @@ When you first run the service, 2 users will be created when the database migrat
 
 1. `POST /payment/v1/authenticate` - Authenticates the specified user on the identity service and, if successful, returns a JWT token, which is necessary to access the other endpoints.
 2. `POST /payment/v1/payments` - Creates a new payment transaction. You can find an example body request on the Swagger.
-3. `GET /payment/v1/payments/{merchantId}` - Get a list of transaction payments occured to the **merchantId** sent. *Requires **administrator** role*.
-4. `GET /payment/v1/payments/{merchantId}/{paymentId}` - GET a transaction payment occured to the merchant and payment identifier sent.
+3. `GET /payment/v1/payments/{merchantId}` - Get a list of transaction payments occurred to the **merchantId** sent. *Requires **administrator** role*.
+4. `GET /payment/v1/payments/{merchantId}/{paymentId}` - GET a transaction payment occurred to the merchant and payment identifier sent.
 
 ### Useful links
 
 * [Swagger UI](https://localhost:5001/swagger) - Provides a display framework that reads an OpenAPI specification document and generates an interactive documentation website.
 * [Kibana](http://localhost:5601/) - Provides search and data visualization capabilities for data indexed in Elasticsearch (logs and monitoring data).
-* [Health checks](https://localhost:5001/healthchecks) - REST api to check service readiness probes.
+* [Health checks](https://localhost:5001/healthchecks) - REST API to check service readiness probes.
 
 ### Technical debits
 
