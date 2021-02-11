@@ -71,7 +71,7 @@ When you first run the application, two users will be created and you can use th
 ### Service endpoints
 
 1. `POST /payment/v1/authenticate` - Authenticates the specified user on the identity service and, if successful, returns a JWT token, which is necessary to access the other endpoints.
-2. `POST /payment/v1/payments` - Creates a new payment transaction. You can find an example body request on the Swagger.
+2. `POST /payment/v1/payments` - Creates a new payment transaction. You can find an example body request on Swagger.
 3. `GET /payment/v1/payments/{merchantId}` - Get a list of transaction payments occurred to the **merchantId** sent. *Requires **administrator** role*.
 4. `GET /payment/v1/payments/{merchantId}/{paymentId}` - GET a transaction payment occurred to the merchant and payment identifier sent.
 
