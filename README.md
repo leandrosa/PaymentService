@@ -85,5 +85,5 @@ When you first run the application, two users will be created and you can use th
 
 * Creation of unit, integration, and performance tests.
 * Create a shared kernel project to remove the dependence of the presentation layer to the infrastructure layer.
-* Include Symmetric Encryption.
+* Include Asymmetric Encryption.
 * Fix health checks UI.
